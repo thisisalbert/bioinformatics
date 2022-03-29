@@ -1,4 +1,4 @@
-makePCAplot <- function(counts, metadata, relevant_features, key_feature) {
+makePCAplot <- function(counts, metadata, color, fill, shape) {
   pca_obj <- counts %>%
     t() %>%
     prcomp(center = TRUE)
@@ -17,16 +17,17 @@ makePCAplot <- function(counts, metadata, relevant_features, key_feature) {
     as.data.frame() %>%
     rownames_to_column("sample_id") %>%
     left_join(x = ., y = metadata, by = "sample_id") %>%
-    select(sample_id, PC1, PC2, all_of(relevant_features)) %>%
+    select(sample_id, PC1, PC2, all_of(color), all_of(fill), all_of(shape)) %>%
     as_tibble() %>% 
     mutate(across(-c(sample_id, PC1, PC2), as.factor))
   
   pca_df %>%
-    ggplot(aes(x = PC1, y = PC2, color = key_feature, fill = key_feature,
-               shape = technical_replicate)) +
+    ggplot(
+      aes_string(x = "PC1", y = "PC2", color = color, fill = fill, shape = shape)
+    ) +
     geom_point(size = 8, alpha = 0.8) +
     stat_ellipse(
-      aes(x = PC1, y = PC2, fill = key_feature, color = key_feature),
+      aes_string(x = "PC1", y = "PC2", fill = fill, color = color),
       geom = "polygon",
       alpha = 0.1,
       inherit.aes = FALSE
