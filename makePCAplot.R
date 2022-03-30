@@ -15,11 +15,11 @@ makePCAplot <- function(counts, metadata, color, fill, shape) {
   pca_df <- pca_obj %>%
     chuck("x") %>%
     as.data.frame() %>%
-    rownames_to_column("sample_id") %>%
-    left_join(x = ., y = metadata, by = "sample_id") %>%
-    select(sample_id, PC1, PC2, all_of(color), all_of(fill), all_of(shape)) %>%
+    rownames_to_column("source_name") %>%
+    left_join(x = ., y = metadata, by = "source_name") %>%
+    select(source_name, PC1, PC2, all_of(color), all_of(fill), all_of(shape)) %>%
     as_tibble() %>% 
-    mutate(across(-c(sample_id, PC1, PC2), as.factor))
+    mutate(across(-c(source_name, PC1, PC2), as.factor))
   
   pca_df %>%
     ggplot(
