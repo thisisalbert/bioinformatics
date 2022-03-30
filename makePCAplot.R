@@ -42,6 +42,7 @@ makePCAplot <- function(counts, metadata, color, fill, shape) {
       x = paste0("PC1 (", pca_var$PC1, "% explained variance)"),
       y = paste0("PC2 (", pca_var$PC2, "% explained variance)")
     ) +
+    coord_fixed() +
     theme_bw() +
     theme(
       text = element_text(size = 16),
