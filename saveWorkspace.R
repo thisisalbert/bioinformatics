@@ -4,11 +4,11 @@ saveWorkspace <- function(workdir = outDir) {
     save.image(
       paste0(outDir, format(Sys.time(), "%y_%m_%d_workspace.RData"))
     )
-    
     writeLines(
       text = capture.output(sessionInfo()), 
       con = paste0(outDir, format(Sys.time(), "%y_%m_%d_sessionInfo.txt"))
     )
+    message("Workspace has been saved")
   }
   
   if (!exists("workdir")) {
@@ -19,6 +19,7 @@ saveWorkspace <- function(workdir = outDir) {
       text = capture.output(sessionInfo()), 
       con = paste0(format(Sys.time(), "%y_%m_%d_sessionInfo.txt"))
     )
+    message("Workspace has been saved")
   }
-  
+
 }
