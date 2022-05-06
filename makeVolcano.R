@@ -1,7 +1,7 @@
 makeVolcano <- function(df, contrast, size_text) {
   
   suppressWarnings(
-    deg_res %>%
+    df %>%
       filter(Contrast == contrast) %>%
       mutate(Regulation = case_when(
         Padj < 0.05 & LogFC > 1 ~ "Upregulated",
