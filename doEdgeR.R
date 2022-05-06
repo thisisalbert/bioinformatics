@@ -14,16 +14,9 @@ doEdgeR <- function(countData, colData, variable, name_contrast) {
     as.data.frame() %>%
     rownames_to_column("gene_id") %>%
     mutate(contrast = name_contrast) %>%
-    mutate(significant = case_when(
-      FDR < 0.05 ~ "Yes",
-      TRUE ~ "No"
-    )) %>%
-    mutate(direction = case_when(
-      logFC > 0 ~ "Upregulated",
-      TRUE ~ "Downregulated"
-    )) %>%
-    select(gene_id, contrast, logFC, FDR, significant, direction) %>%
-    dplyr::rename(padj = FDR) %>%
+    mutate(significant = ifelse(FDR < 0.05, "Yes", "No")) %>%
+    mutate(direction = ifelse(logFC > 0, "Upregulated", "Downregulated")) %>%
+    select(gene_id, contrast, logFC, padj = FDR, significant, direction) %>%
     as_tibble() %>%
     mutate(Tool = "EdgeR", .before = everything())
 }
