@@ -12,7 +12,7 @@ makeVolcano <- function(df, contrast) {
       ggplot(aes(x = LogFC, y = -log10(Padj), col = Regulation, label = Labels)) +
       geom_point(size = 2, alpha = 0.5) +
       ggrepel::geom_label_repel(
-        size = 3, label.size = 0.5, fontface = 2, show.legend = FALSE,
+        size = 6, label.size = 0.5, fontface = 2, show.legend = FALSE,
         box.padding = 0.5, point.padding = 0.5, nudge_x = 0.5, nudge_y = 0.5,
         arrow = arrow(length = unit(x = 0.25, units = "cm")), max.overlaps = Inf
       ) +
