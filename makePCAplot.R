@@ -1,4 +1,4 @@
-makePCAplot <- function(counts, metadata, color, fill, shape) {
+makePCAplot <- function(counts, metadata, color, fill, shape, size_text) {
   pca_obj <- counts %>%
     t() %>%
     prcomp(center = TRUE)
@@ -45,7 +45,7 @@ makePCAplot <- function(counts, metadata, color, fill, shape) {
     coord_fixed() +
     theme_bw() +
     theme(
-      text = element_text(size = fonttext),
+      text = element_text(size = size_text),
       plot.title = element_text(face = "bold"),
       aspect.ratio = 1
     )
