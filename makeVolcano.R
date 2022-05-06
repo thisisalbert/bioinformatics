@@ -42,8 +42,8 @@ makeVolcano <- function(df, contrast) {
       ) +
       guides(colour = guide_legend(override.aes = list(size = 5))) +
       theme(
-        text = element_text(size = 18, color = "black"),
-        plot.title = element_text(face = "bold", hjust = 0.5, size = 16),
+        text = element_text(size = fonttext, color = "black"),
+        plot.title = element_text(face = "bold", hjust = 0.5, size = fonttext),
         plot.subtitle = element_text(hjust = 0.5),
         legend.position = "top",
         legend.direction = "horizontal",
