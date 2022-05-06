@@ -1,4 +1,4 @@
-makeVolcano <- function(df, contrast, size_text) {
+makeVolcano <- function(df, contrast, size_text, genes) {
   
   suppressWarnings(
     df %>%
@@ -8,7 +8,7 @@ makeVolcano <- function(df, contrast, size_text) {
         Padj < 0.05 & LogFC < -1 ~ "Downregulated",
         TRUE ~ "None"
       )) %>%
-      mutate(Labels = ifelse(Gene_id %in% top_degs, Gene_id, NA_character_)) %>%
+      mutate(Labels = ifelse(Gene_id %in% genes, Gene_id, NA_character_)) %>%
       ggplot(aes(x = LogFC, y = -log10(Padj), col = Regulation, label = Labels)) +
       geom_point(size = 2, alpha = 0.5) +
       ggrepel::geom_label_repel(
