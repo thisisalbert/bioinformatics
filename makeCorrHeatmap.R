@@ -49,12 +49,8 @@ makeCorrHeatmap <- function(counts, size_text) {
   }
   
   corr_plot +
-    labs(
-      fill = NULL, 
-      title = "Correlation Heatmap with hierarchical clustering"
-    ) +
+    labs(fill = NULL) +
     theme(
-      plot.title = element_text(size = size_text, face = "bold", hjust = 0.5),
       legend.text = element_text(size = size_text),
       legend.key.height = unit(1.5, "cm"),
       panel.border = element_rect(size = 0.5, fill = NA),
