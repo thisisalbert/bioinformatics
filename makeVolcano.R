@@ -24,13 +24,13 @@ makeVolcano <- function(df, contrast, size_text) {
       ) +
       scale_x_continuous(
         breaks = seq.int(
-          from = floor(min(deg_res$LogFC)),
-          to = ceiling(max(deg_res$LogFC)),
+          from = floor(min(df$LogFC)),
+          to = ceiling(max(df$LogFC)),
           by = 1
         ),
         limits = c(
-          floor(min(deg_res$LogFC)),
-          ceiling(max(deg_res$LogFC))
+          floor(min(df$LogFC)),
+          ceiling(max(df$LogFC))
         )
       ) +
       labs(
