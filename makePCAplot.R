@@ -45,7 +45,7 @@ makePCAplot <- function(counts, metadata, color, fill, shape) {
     coord_fixed() +
     theme_bw() +
     theme(
-      text = element_text(size = 16),
+      text = element_text(size = fonttext),
       plot.title = element_text(face = "bold"),
       aspect.ratio = 1
     )
