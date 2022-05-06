@@ -1,4 +1,4 @@
-makeVolcano <- function(df, contrast) {
+makeVolcano <- function(df, contrast, size_text) {
   
   suppressWarnings(
     deg_res %>%
@@ -42,7 +42,7 @@ makeVolcano <- function(df, contrast) {
       ) +
       guides(colour = guide_legend(override.aes = list(size = 5))) +
       theme(
-        text = element_text(size = fonttext, color = "black"),
+        text = element_text(size = size_text, color = "black"),
         plot.title = element_text(face = "bold", hjust = 0.5, size = fonttext),
         plot.subtitle = element_text(hjust = 0.5),
         legend.position = "top",
