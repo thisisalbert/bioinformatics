@@ -1,25 +1,33 @@
-saveWorkspace <- function(workdir = outDir) {
+saveWorkspace <- function(workdir = outDir, saveEnv = TRUE, saveInfo = TRUE) {
   
-  if (exists("workdir")) {
-    save.image(
-      paste0(outDir, format(Sys.time(), "%y_%m_%d_workspace.RData"))
-    )
-    writeLines(
-      text = capture.output(sessionInfo()), 
-      con = paste0(outDir, format(Sys.time(), "%y_%m_%d_sessionInfo.txt"))
-    )
-    message("Workspace has been saved")
+  if (exists("workdir") == TRUE) {
+    if (saveEnv) {
+      save.image(
+        paste0(workdir, format(Sys.time(), "%y_%m_%d_workspace.RData"))
+      )
+    }
+    if (saveInfo) {
+      writeLines(
+        text = capture.output(sessionInfo()), 
+        con = paste0(workdir, format(Sys.time(), "%y_%m_%d_sessionInfo.txt"))
+      )
+    }
   }
   
-  if (!exists("workdir")) {
-    save.image(
-      paste0(format(Sys.time(), "%y_%m_%d_workspace.RData"))
-    )
-    writeLines(
-      text = capture.output(sessionInfo()), 
-      con = paste0(format(Sys.time(), "%y_%m_%d_sessionInfo.txt"))
-    )
-    message("Workspace has been saved")
+  if(exists("workdir") == FALSE) {
+    if (saveEnv) {
+      save.image(
+        paste0(format(Sys.time(), "%y_%m_%d_workspace.RData"))
+      )
+    }
+    if (saveInfo) {
+      writeLines(
+        text = capture.output(sessionInfo()), 
+        con = paste0(format(Sys.time(), "%y_%m_%d_sessionInfo.txt"))
+      )
+    }
   }
-
+  
+  message("Workspace has been saved")
+  
 }
